@@ -1,0 +1,63 @@
+<h2>Checkout</h2>
+
+
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="firstName">Nombre *</label>
+      <input [ngClass]="{'is-invalid': firstNameInput.touched && firstNameInput.invalid}" #firstNameInput="ngModel" [(ngModel)]="customer.firstName" type="text" required class="form-control" name="firstName" id="firstName">
+      <div *ngIf="firstNameInput.touched && firstNameInput.invalid" class="invalid-feedback">
+        Por favor, escriba su nombre
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="lastName">Apellidos</label>
+      <input [(ngModel)]="customer.lastName" type="text"  class="form-control" name="lastName" id="lastName">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="address">Dirección *</label>
+    <input [ngClass]="{'is-invalid': addressInput.touched && addressInput.invalid}" #addressInput="ngModel" [(ngModel)]="customer.address" type="text" required class="form-control" name="address" id="address" placeholder="1234 Main St">
+    <div *ngIf="addressInput.touched && addressInput.invalid" class="invalid-feedback">
+      Por favor, escriba su dirección
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email *</label>
+    <input [ngClass]="{'is-invalid': emailInput.touched && emailInput.invalid}" #emailInput="ngModel" [(ngModel)]="customer.email" pattern=".+@.+" type="email" required class="form-control" name="email" id="email" placeholder="email">
+    <div *ngIf="emailInput.touched && emailInput.invalid" class="invalid-feedback">
+      Por favor, escriba una dirección de correo válida
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="city">Ciudad *</label>
+      <input [ngClass]="{'is-invalid': cityInput.touched && cityInput.invalid}" #cityInput="ngModel"  [(ngModel)]="customer.city" required type="text" class="form-control" name="city" id="city">
+      <div *ngIf="cityInput.touched && cityInput.invalid" class="invalid-feedback">
+        Por favor, escriba su ciudad
+      </div>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="postalCode">Código postal *</label>
+      <input [ngClass]="{'is-invalid': postalCodeInput.touched && postalCodeInput.invalid}" #postalCodeInput="ngModel"  [(ngModel)]="customer.postalCode" required pattern="\d{5}" class="form-control" name="postalCode" id="postalCode">
+      <div *ngIf="postalCodeInput.touched && postalCodeInput.invalid" class="invalid-feedback">
+        Por favor, escriba su código postal
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input [(ngModel)]="customer.rgpdChecked" [ngClass]="{'is-invalid': f.submitted && rgpdCheckedInput.invalid}"  required #rgpdCheckedInput="ngModel" class="form-check-input" type="checkbox" name="rgpdChecked" id="rgpdChecked">
+      <label class="form-check-label" for="rgpdChecked">
+        Al enviar mis datos personales recogidos en este formulario estoy confirmando que he leído y acepto las Condiciones de Uso y la Política de Privacidad
+      </label>
+      <div *ngIf="f.submitted && rgpdCheckedInput.invalid" class="invalid-feedback">
+        Por favor, ha de aceptar las condiciones
+      </div>
+    </div>
+  </div>
+  <div *ngIf="f.submitted && !f.valid" class="alert alert-danger" role="alert">
+    Ups, creo que tienes algun error, reviswalo por favor
+  </div>
+  <button type="submit" class="btn btn-primary">Siguiente</button>
+</form>
