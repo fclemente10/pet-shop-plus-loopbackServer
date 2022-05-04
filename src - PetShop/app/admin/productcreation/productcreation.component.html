@@ -1,0 +1,84 @@
+<p>Area para crear productos</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="productEditionForm" (ngSubmit)="onSubmit()" #f=ngForm >
+        <div formGroupName="userData">
+
+          <div class="form-group">
+            <label for="id">Codigo del Producto</label>
+            <input
+              type="number"
+              id="id"
+              formControlName="id"
+              class="form-control">
+            <span *ngIf="!productEditionForm.get('userData.id').valid && productEditionForm.get('userData.id').touched"
+                  class="help-block">Codigo del producto no valido!</span>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Nombre del Producto</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control">
+            <span *ngIf="!productEditionForm.get('userData.name').valid && productEditionForm.get('userData.name').touched"
+                  class="help-block">Nombre del Producto no valido!</span>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description del producto</label>
+            <input
+              type="text"
+              id="description"
+              formControlName="description"
+              class="form-control">
+            <span *ngIf="!productEditionForm.get('userData.description').valid && productEditionForm.get('userData.description').touched"
+                  class="help-block">Description no valida!</span>
+          </div>
+
+          <div class="form-group">
+            <label for="id">Precio del Producto</label>
+            <input
+              type="number"
+              id="price"
+              formControlName="price"
+              class="form-control">
+            <span *ngIf="!productEditionForm.get('userData.price').valid && productEditionForm.get('userData.price').touched"
+                  class="help-block">Precio del producto no valido!</span>
+          </div>
+
+
+        </div>
+
+        <span *ngIf="!productEditionForm.valid && productEditionForm.touched"
+              class="help-block">Datos no Validos!</span>
+
+        <button class="btn btn-primary"
+                 type="submit"
+                [disabled]="!f.valid">Submit</button>
+      </form>
+    </div>
+
+    <hr>
+    <div class="row" *ngIf="submitted">
+      <div class="col-xs-12">
+
+        <h3>Datos del Producto</h3>
+        <p>Codigo: {{ product2.id }} </p>
+        <p>Producto: {{ product2.name }} </p>
+        <p>Descripcion: {{ product2.description }} </p>
+        <p>Precio: {{ product2.price }} </p>
+
+        <button class="btn btn-primary">
+          <a style="color: darkorange" [routerLink]="['/admin']">
+            Success Ver Productos
+          </a>
+        </button>
+      </div>
+
+  </div>
+  </div>
+</div>
