@@ -1,0 +1,12 @@
+<div class="welcome" [ngClass]="{'pair': isPair(), 'odd': !isPair()}">
+  Bienvenido a nuestra tienda <span *ngIf="isPepe()">{{customerNameAfterRefreshing}}</span> #{{number}}
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input class="form-control" [(ngModel)]="customerName" name="name" type="text">
+    </div>
+    <div class="form-group col-md-6">
+      <button (click)="changeNameAfterRefreshing()" class="btn btn-info">Actualizar</button>
+    </div>
+  </div>
+</div>

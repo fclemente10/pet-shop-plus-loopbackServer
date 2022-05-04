@@ -1,0 +1,17 @@
+<div class="app">
+  <div class="container mb-5 mt-3">
+    <div class="row">
+      <div class="col-10">
+        <a routerLink="/"><h1>{{title}}</h1></a>
+      </div>
+      <div #shoppingcartcontainer class="col-2">
+        <shoppingcart #shoppingcart></shoppingcart>
+      </div>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+
+</div>
+
+
